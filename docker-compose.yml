@@ -1,0 +1,15 @@
+services:
+  expressServer:
+    build: .
+
+    ports:
+      - ${PORT}:${PORT}
+    
+  mongodbServer:
+    image: clutteredcode/mongo-alpine:latest
+
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_USERNAME=${MONGO_USER}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
