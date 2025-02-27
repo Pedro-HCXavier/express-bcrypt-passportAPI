@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /projeto-api
+WORKDIR /appSenhas
 
 COPY . .
 

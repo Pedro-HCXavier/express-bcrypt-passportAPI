@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const connectDB = require('./db/db')
 const mongoose = require('mongoose')
+const path = require('path')
+const cors = require('cors')
+
 
 // Se o servidor rodar na porta 3012, quer dizer que o dotenv não está funcionando corretamente
 const PORT = process.env.PORT || 3012
@@ -12,6 +15,9 @@ const PORT = process.env.PORT || 3012
 const app = express()
 
 // middleware
+
+app.use(cors())
+app.use(express.static(path.join(__dirname, 'public')))
 
 const secretSecret = 'senhaGenerica10'
 app.use(cookieParser(secretSecret))
@@ -36,13 +42,16 @@ app.use(passport.session())
 const olaMundo = require('./routes/olamundo')
 const rotaRegistrar = require('./routes/registrar')
 const rotaLogin = require('./routes/login')
+const rotaCofre = require('./routes/cofre')
 
 app.use('/', olaMundo)
+app.use('/inicial', olaMundo)
 app.use('/login', rotaLogin)
 app.use('/registrar', rotaRegistrar)
+app.use('/cofre', rotaCofre)
 
 
-// Rotas de api - Essas rotas não precisam de um arquivo html
+// Essas rotas não precisam de um arquivo html
 const rotaAuth = require('./routes/auth')
 
 app.use('/api/auth', rotaAuth)

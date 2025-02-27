@@ -1,10 +1,14 @@
 const express = require('express')
 const router = express.Router()
-
+const path = require('path')
 const User = require('../db/models/User')
 
 const hashing = require('../utils/hashing')
 
+
+router.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../public/views/registrar.html'))
+})
 router.post('/', async (req, res) => {
     
     // O body precisa de email e senha
@@ -16,7 +20,7 @@ router.post('/', async (req, res) => {
         // console.log(newUser)
         const saveUser = await newUser.save()
 
-        res.status(201).send(saveUser)
+        res.status(201).redirect('/login')
     } catch (err) {
         console.error(`Error : ${err}`)
         res.status(400).send('O email deve ser único, preencha o campo senha')

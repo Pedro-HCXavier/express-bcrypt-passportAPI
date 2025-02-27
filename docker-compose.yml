@@ -1,12 +1,17 @@
 services:
-  expressServer:
+  expresserver:
     build: .
 
     ports:
       - ${PORT}:${PORT}
     
+    environment:
+      - CONNECTION_STRING=mongodb://usuario:senhaGenerica10@mongodbServer:27017/senhasApp?authSource=admin
+    
   mongodbServer:
     image: clutteredcode/mongo-alpine:latest
+
+    container_name: mongodbServer
 
     ports:
       - 27017:27017
