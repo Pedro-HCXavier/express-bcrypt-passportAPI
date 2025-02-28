@@ -1,4 +1,4 @@
-# API Express com Autenticação
+# WORK IN PROGRESS
 
 Este é um projeto pessoal de uma API desenvolvida com Express.js, que implementa um sistema de autenticação de usuários utilizando Passport.js e Bcrypt.js. A API possui algumas rotas configuradas para testes, que podem ser acessadas por meio de um cliente HTTP como Postman ou Thunder Client.
 
